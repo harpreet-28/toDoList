@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>To Do App</h1>
+    <div ng-controller="myController as main">
+        <div>
+            <input type="text" ng-model="main.newTodo">
+            <br>
+            <button ng-click="main.addNewTodo();">Click to Add</button>
+        </div>
+        <div>
+            <p>Your To-Do List</p>
+            <button ng-hide="main.editMode" ng-click="main.triggerEditMode();">Edit</button>
+            <button ng-show="main.editMode" ng-click="main.triggerEditMode();">Done</button>
+            <ol>
+                <li ng-repeat="todo in main.todos track by $index">
+                    <span ng-hide="main.editMode"> {{todo}}</span>
+                    <input ng-model="todo" ng-show="main.editMode" type="text">
+                    <button ng-hide="main.editMode" ng-click="main.deleteTodo($index);" >Delete</button>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+    <script src="./js/controller.js"></script>
+</body>
+
+</html>
